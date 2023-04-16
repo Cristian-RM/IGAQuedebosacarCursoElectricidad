@@ -9,59 +9,131 @@
         .rubro {
             margin-bottom: 10px;
         }
+
+        .panel-notas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+            align-items: start;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .rubro {
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            width: 100%;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .rubro input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 80px;
+            margin-bottom: 5px;
+            margin-left: 10px;
+        }
+
+        label[id$="porcentaje"],
+        span[id$="porcentaje"] {
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        span[id$="porcentaje"] {
+            display: inline-block;
+            padding: 2px 5px;
+            background-color: #eee;
+            border-radius: 3px;
+        }
+
+        label[id="porcentajeTotal"],
+        label[id="notafaltantetotal"] {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     </style>
 </head>
 
 <body onload="preparar()">
-    <div class="rubro">
-        <label for="trabajoInvestigacion">Nota obtenido en trabajo de investigación (10%):</label>
-        <input type="number" id="trabajoInvestigacion" min="0" max="100">
-        <label id="trabajoInvestigacionporcentaje"></label>
-    </div>
-
-    <div class="rubro">
-        <label for="ejercicioLabDigital">Nota obtenido en ejercicio de laboratorio digital 1 (6%):</label>
-        <input type="number" id="labDigital1" min="0" max="100">
-        <label id="labDigital1porcentaje"></label>
-    </div>
-    <div class="rubro">
-        <label for="labDigital2">Nota obtenido en laboratorio digital 2 (6%):</label>
-        <input type="number" id="labDigital2" min="0" max="100">
-        <label id="labDigital2porcentaje"></label>
-    </div>
-    <div class="rubro">
-        <label for="examen1">Nota obtenido en examen 1 (19%):</label>
-        <input type="number" id="examen1" min="0" max="100">
-        <label id="examen1porcentaje"></label>
-    </div>
-    <div class="rubro">
-        <label for="examen2">Nota obtenido en examen 2 (19%):</label>
-        <input type="number" id="examen2" min="0" max="100">
-        <label id="examen2porcentaje"></label>
-    </div>
-
-    <div class="rubro">
-        <label for="gira">Nota obtenido en gira (8%):</label>
-        <input type="number" id="gira" min="0" max="100">
-        <label id="giraporcentaje"></label>
-    </div>
-    <div class="rubro">
-        <label for="proyectoPractico">Nota obtenido en proyecto práctico (14%):</label>
-        <input type="number" id="proyectoPractico" min="0" max="100">
-        <span id="proyectoPracticoporcentaje"></span>
-    </div>
-    <div>
-        <label for="" id="porcentajeTotal"></label><br>
-        <label for="" id="notafaltantetotal"></label>
-    </div>
+    <h1>Calculadora de Notas</h1>
+    <p>Para utilizar esta calculadora de notas, ingresa las notas obtenidas en cada una de las actividades y exámenes en
+        los campos correspondientes. Las notas deben estar en el rango de 0 a 100, puedes revisar en Avatar, si aparece
+        un 9.5 colocaras acá un 95.</p>
+    <h2>Instrucciones</h2>
+    <ol>
+        <li>Ingresa las notas obtenidas en cada actividad y examen en los campos correspondientes.</li>
+        <li>Las notas deben estar en el rango de 0 a 100.</li>
+        <li>Una vez ingresadas las notas, la calculadora mostrará automáticamente el porcentaje alcanzado y la nota
+            faltante para alcanzar el total.</li>
+        <li>En la última sección, puedes viewport la nota que debes obtener en el último examen para calcular el
+            resultado final.</li>
+    </ol>
 
 
-    <div class="rubro">
-        <label for="examen3">Nota que debes sacar :</label>
-        <input type="number" id="examen3" min="0" max="    100">
-        <label id="examen3porcentaje"></label>
-    </div>
+    <h2>Ingrese las notas</h2>
+    <div class="panel-notas">
+        <div class="rubro">
+            <label for="trabajoInvestigacion">Trabajo de investigación (10%):</label>
+            <input type="number" id="trabajoInvestigacion" min="0" max="100">
+            <label id="trabajoInvestigacionporcentaje"></label>
+        </div>
 
+        <div class="rubro">
+            <label for="ejercicioLabDigital">Ejercicio de laboratorio digital 1 (6%):</label>
+            <input type="number" id="labDigital1" min="0" max="100">
+            <label id="labDigital1porcentaje"></label>
+        </div>
+        <div class="rubro">
+            <label for="labDigital2">Ejercicio de laboratorio digital 2 (6%):</label>
+            <input type="number" id="labDigital2" min="0" max="100">
+            <label id="labDigital2porcentaje"></label>
+        </div>
+        <div class="rubro">
+            <label for="examen1">Primer examen (19%):</label>
+            <input type="number" id="examen1" min="0" max="100">
+            <label id="examen1porcentaje"></label>
+        </div>
+        <div class="rubro">
+            <label for="examen2">Segundo examen (19%):</label>
+            <input type="number" id="examen2" min="0" max="100">
+            <label id="examen2porcentaje"></label>
+        </div>
+
+        <div class="rubro">
+            <label for="gira">Gira (8%):</label>
+            <input type="number" id="gira" min="0" max="100">
+            <label id="giraporcentaje"></label>
+        </div>
+        <div class="rubro">
+            <label for="proyectoPractico">Proyecto práctico (14%):</label>
+            <input type="number" id="proyectoPractico" min="0" max="100">
+            <label id="proyectoPracticoporcentaje"></label>
+        </div>
+        <div>
+            <label for="" id="porcentajeTotal"></label><br>
+            <label for="" id="notafaltantetotal"></label>
+        </div>
+
+
+        <div class="rubro">
+            <label for="examen3">Nota que debes sacar :</label>
+            <input type="number" id="examen3" min="0" max="    100">
+            <label id="examen3porcentaje"></label>
+        </div>
+    </div>
     <p id="resultado"></p>
     <img src="" id="carita" alt="">
 
@@ -155,12 +227,12 @@
             } else if (porcentajeFaltante <= 19) {
                 mensajenota += `Necesitas obtener al menos un ${Number((porcentajeFaltante / 0.19).toFixed(2))} en el examen 3 para ganar, el porcentaje fatlante es ${porcentajeFaltante}.`
                 document.getElementById("carita").src = "https://static.vecteezy.com/system/resources/previews/006/828/449/non_2x/face-emoji-expressing-a-happy-mood-free-vector.jpg";
-                document.getElementById("notafaltantetotal").innerHTML = "Nota faltante " +  Number(porcentajeFaltante).toFixed(2) + "%";
+                document.getElementById("notafaltantetotal").innerHTML = "Nota faltante " + Number(porcentajeFaltante).toFixed(2) + "%";
                 document.getElementById("examen3").value = Number((porcentajeFaltante / 0.19).toFixed(2));
             } else if (porcentajeFaltante > 19) {
                 mensajenota += ` lo lamento ya no puedes ganar el curso ya que necesitas ${Number((porcentajeFaltante - 19)).toFixed(2)}% en otros rubros y un 100 en el tercer examen para pasar el curso,el porcentaje fatlante es ${porcentajeFaltante}.`
                 document.getElementById("carita").src = "https://www.shutterstock.com/image-vector/sad-face-600w-227104954.jpg";
-                document.getElementById("notafaltantetotal").innerHTML = "Nota faltante " +  Number(porcentajeFaltante).toFixed(2) + "%";
+                document.getElementById("notafaltantetotal").innerHTML = "Nota faltante " + Number(porcentajeFaltante).toFixed(2) + "%";
 
             }
 
