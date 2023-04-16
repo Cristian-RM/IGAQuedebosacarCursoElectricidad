@@ -253,7 +253,7 @@
                 document.getElementById("notafaltantetotal").innerHTML = "Te sobra  " + Number(porcentajeFaltante).toFixed(2) * -1 + "%";
 
             } else if (porcentajeFaltante <= 19) {
-                mensajenota += `Necesitas obtener al menos un ${Number((porcentajeFaltante / 0.19).toFixed(2))} en el examen 3 para ganar, el porcentaje fatlante es ${porcentajeFaltante}.`
+                mensajenota += `Necesitas obtener al menos un ${Number((porcentajeFaltante / 0.19).toFixed(2))} en el examen 3 para ganar, el porcentaje faltante es ${porcentajeFaltante}.`
                 document.getElementById("carita").src = "https://static.vecteezy.com/system/resources/previews/006/828/449/non_2x/face-emoji-expressing-a-happy-mood-free-vector.jpg";
                 document.getElementById("notafaltantetotal").innerHTML = "Nota faltante " + Number(porcentajeFaltante).toFixed(2) + "%";
                 document.getElementById("examen3").value = Number((porcentajeFaltante / 0.19).toFixed(2));
