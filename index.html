@@ -125,7 +125,8 @@
         <div>
             <label>Nota minima 70</label><br>
             <label for="" id="porcentajeTotal"></label><br>
-            <label for="" id="notafaltantetotal"></label>
+            <label for="" id="notafaltantetotal"></label><br>
+           
         </div>
 
 
@@ -135,6 +136,7 @@
             <label id="examen3porcentaje"></label>
         </div>
         <p id="resultado"></p>
+        <label for="" id="motivacion"></label>
     </div>
     <button id="descargarImagen">Descargar imagen</button>
     <div id="canvasContenedor" style="display:none;"></div>
@@ -228,7 +230,7 @@
             // let examen3p = (!examen3? 0:examen3) * 0.18;
             let girap = (!gira ? 0 : gira) * 0.08;
             let proyectoPracticop = (!proyectoPractico ? 0 : proyectoPractico) * 0.14;
-            debugger
+            
             // calculamos la suma de los porcentajes de los rubros
             const porcentajeTotal = trabajoInvestigacionp + labDigital1p + labDigital2p + examen1p + examen2p + girap + proyectoPracticop;
 
@@ -245,15 +247,15 @@
 
             // si este es el último examen, calculamos cuánto porcentaje necesita el estudiante en este examen para pasar
 
-            let mensajenota = `Tu nota es de ${Number((porcentajeTotal).toFixed(2))} `;
+            let mensajenota = `Tu nota es de ${Number((porcentajeTotal).toFixed(2))}. `;
             if (porcentajeTotal >= 70) {
-                mensajenota += `Felicidades, has aprobado el año!`
+                mensajenota += `Felicidades, has aprobado el año!`+ ".Tu nota máxima es de "+  (porcentajeTotal + 18) + "."
                 document.getElementById("carita").src = "https://w7.pngwing.com/pngs/47/268/png-transparent-t-shirt-epic-face-pic-face-smiley-emoticon-thumbnail.png";
                 document.getElementById("examen3").value = 0;
-                document.getElementById("notafaltantetotal").innerHTML = "Te sobra  " + Number(porcentajeFaltante).toFixed(2) * -1 + "%";
+                document.getElementById("notafaltantetotal").innerHTML = "Te sobra  " + Number(porcentajeFaltante).toFixed(2) * -1 + "% por lo que tu nota máxima es de "+  (porcentajeTotal + 18)  ;
 
             } else if (porcentajeFaltante <= 19) {
-                mensajenota += `Necesitas obtener al menos un ${Number((porcentajeFaltante / 0.19).toFixed(2))} en el examen 3 para ganar, el porcentaje faltante es ${porcentajeFaltante}.`
+                mensajenota += `Necesitas obtener al menos un ${Number((porcentajeFaltante / 0.19).toFixed(2))} en el examen 3 para ganar, el porcentaje faltante es ${porcentajeFaltante}.` + ".Tu nota máxima es de "+  (porcentajeTotal + 18) + ".";
                 document.getElementById("carita").src = "https://static.vecteezy.com/system/resources/previews/006/828/449/non_2x/face-emoji-expressing-a-happy-mood-free-vector.jpg";
                 document.getElementById("notafaltantetotal").innerHTML = "Nota faltante " + Number(porcentajeFaltante).toFixed(2) + "%";
                 document.getElementById("examen3").value = Number((porcentajeFaltante / 0.19).toFixed(2));
@@ -263,7 +265,8 @@
                 document.getElementById("notafaltantetotal").innerHTML = "Nota faltante " + Number(porcentajeFaltante).toFixed(2) + "%";
 
             }
-
+            document.getElementById("motivacion").innerHTML = generarMotivacion(porcentajeTotal);
+            
             document.getElementById("examen3").value = porcentajeTotal >= 70 ? 0 : Number((porcentajeFaltante / 0.19).toFixed(2));
             document.getElementById("carita").style.width = "100px";
             document.getElementById("resultado").innerHTML = mensajenota;
@@ -296,6 +299,32 @@
             var element = document.getElementById('resultado');
             html2pdf().from(element).save();
         }
+        function generarMotivacion(porcentajeTotal) {
+    let motivacion = "";
+    let mensajesGanados = [
+        "¡Felicidades, has aprobado el año! Sigue esforzándote.",
+        "¡Excelente trabajo! Has aprobado el año. Continúa con tu dedicación.",
+    ];
+    let mensajesCerca = [
+        "Estás muy cerca de aprobar el año, ¡no te rindas!",
+        "Un poco más de esfuerzo y aprobarás el año. ¡Sigue estudiando!",
+    ];
+    let mensajesPerdidos = [
+        "Lo importante es aprender y disfrutar del proceso. ¡Inténtalo de nuevo el próximo año!",
+        "Aunque no hayas aprobado, la diversión nunca faltó. ¡No te desanimes y sigue adelante!",
+    ];
+            debugger
+    if (porcentajeTotal >= 70) {
+        motivacion = mensajesGanados[Math.floor(Math.random() * mensajesGanados.length)];
+    } else if (porcentajeTotal >= 53) {
+        motivacion = mensajesCerca[Math.floor(Math.random() * mensajesCerca.length)];
+    } else {
+        motivacion = mensajesPerdidos[Math.floor(Math.random() * mensajesPerdidos.length)];
+    }
+
+    return motivacion;
+}
+
     </script>
 </body>
 
